@@ -19,18 +19,18 @@ class SkypeContactsSource(Source):
   def __init__(self):
     Source.__init__(self, _("Skype contacts"))
 
-  def initialize(self):
-    gfile = gio.File(os.path.expanduser(self.contacts_file_path))
-    self.monitor = gfile.monitor_file(gio.FILE_MONITOR_NONE, None)
-    if self.monitor:
-      self.monitor.connect("changed", self._changed)
+  # def initialize(self):
+  #   gfile = gio.File(os.path.expanduser(self.contacts_file_path))
+  #   self.monitor = gfile.monitor_file(gio.FILE_MONITOR_NONE, None)
+  #   if self.monitor:
+  #     self.monitor.connect("changed", self._changed)
 
-  def _changed(self, monitor, file1, file2, evt_type):
-    """Change callback; something changed"""
-    if evt_type in (gio.FILE_MONITOR_EVENT_CREATED,
-                    gio.FILE_MONITOR_EVENT_DELETED,
-                    gio.FILE_MONITOR_EVENT_CHANGED):
-      self.mark_for_update()
+  # def _changed(self, monitor, file1, file2, evt_type):
+  #   """Change callback; something changed"""
+  #   if evt_type in (gio.FILE_MONITOR_EVENT_CREATED,
+  #                   gio.FILE_MONITOR_EVENT_DELETED,
+  #                   gio.FILE_MONITOR_EVENT_CHANGED):
+  #     self.mark_for_update()
 
   def get_items(self):
     contacts_file = os.path.expanduser(self.contacts_file_path)
